@@ -230,7 +230,7 @@ function checkGap() {
     // -------------------------------------------------------
     // 🚨 ここが大改造ポイント：スキャン範囲の追従計算
     // -------------------------------------------------------
-    const scanSize = 40; 
+    const scanSize = 30; 
 
     // A. コンテナの中心座標
     const cx = containerRect.left + containerRect.width / 2;
@@ -238,7 +238,7 @@ function checkGap() {
 
     // B. 現在の口パーツの中心座標
     const mx = mouthRect.left + mouthRect.width / 2;
-    const my = 50+mouthRect.top + mouthRect.height / 2;
+    const my = mouthRect.top + mouthRect.height / 2;
 
     // C. ズレの量（オフセット）を計算
     const offsetX = mx - cx;
@@ -309,3 +309,4 @@ if (greenPixelCount === 0) {
 }
 
 // -------------------------------------------------------------------------
+
