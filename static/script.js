@@ -215,7 +215,7 @@ function checkGap() {
     const drawToCanvas = (imgElement) => {
         const rect = imgElement.getBoundingClientRect();
         const containerCenterX = containerRect.left + containerRect.width / 2;
-        const containerCenterY = containerRect.top + containerRect.height / 2+40;
+        const containerCenterY = containerRect.top + containerRect.height / 2+60;
         
         // コンテナ中心を基準としたキャンバス上の描画位置
         const imgX = rect.left - containerCenterX + (gapCanvas.width / 2);
@@ -307,4 +307,5 @@ if (greenPixelCount === 0) {
     }
 }
 }
+
 // -------------------------------------------------------------------------
