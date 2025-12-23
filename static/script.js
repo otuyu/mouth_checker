@@ -247,7 +247,7 @@ function checkGap() {
     // D. キャンバスの中心にオフセットを加えて、スキャン開始位置を決定
     // gapCanvas.width / 2 はキャンバスの中心点
     const startX = (gapCanvas.width / 2) + offsetX - (scanSize / 2);
-    const startY = (gapCanvas.height / 2) + offsetY - (scanSize / 2)+120;
+    const startY = (gapCanvas.height / 2) + offsetY - (scanSize / 2)-10;
 
     // -------------------------------------------------------
 
@@ -309,6 +309,7 @@ if (greenPixelCount === 0) {
 }
 
 // -------------------------------------------------------------------------
+
 
 
 
