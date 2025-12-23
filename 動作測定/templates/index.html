@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <div id="control-panel">
+    
+    <div id="vowel-buttons">
+        <button onclick="showMouth('a')">あ</button>
+        <button onclick="showMouth('i')">い</button>
+        <button onclick="showMouth('u')">う</button>
+        <button onclick="showMouth('e')">え</button>
+        <button onclick="showMouth('o')">お</button>
+        <button onclick="showMouth('none')">閉じる</button>
+    </div>
+    <hr>
+    
+    <div id="adjustment-panel">
+        </div>
+</div>
+            <h3>選択中のパーツ調整</h3>
+            <p>対象: <span id="current-layer-name">背景 (mouth-inside.jpg)</span></p>
+
+            <label>Y位置調整 (上下): <input type="range" min="-50" max="50" value="0" step="0.5" id="pos-y-slider"></label>
+            <label>X位置調整 (左右): <input type="range" min="-10" max="10" value="0" step="0.5" id="pos-x-slider"></label>
+            <label>サイズ調整 (%): <input type="range" min="30" max="100" value="100" step="1" id="size-slider"></label>
+        </div>
+    </div>
+
+    <div id="parallax-container">
+        {% for layer in layers %}
+        <img
+            class="parallax-layer"
+            src="{{ url_for('static', filename='images/' + layer.name) }}"
+            data-speed="{{ layer.speed }}"
+            style="z-index: {{ layer.z_index }};"
+            alt="{{ layer.name }}"
+            
+            id="{{ loop.index == 1 and 'mouth-inside' or 'mouth-' + layer.name[6:7] }}" 
+            data-layer-type="{{ loop.index == 1 and 'background' or 'vowel' }}"
+            data-initial-name="{{ layer.name }}" {% if loop.index > 1 %}
+            style="display: none; z-index: {{ layer.z_index }};"
+            {% endif %}
+        >
+        {% endfor %}
+    </div>
+
+<canvas id="gap-check-canvas" width="200" height="200" style="display: none;"></canvas>
+
+<div id="gap-alert" style="
+    position: fixed; 
+    top: 10px;          /* 端っこに寄せる */
+    right: 10px;        /* 端っこに寄せる */
+    
+    /* 👇 ここを小さく修正 */
+    padding: 5px 10px;  /* 余白を小さく */
+    font-size: 12px;    /* 文字サイズを下のパネルと同じくらいに */
+    
+    background: rgba(255, 0, 0, 0.8); 
+    color: white; 
+    font-weight: bold; 
+    border-radius: 4px; 
+    pointer-events: none; 
+    display: none; 
+    z-index: 10001;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);"> ⚠️ 隙間あり
+</div>
+
+<div id="measurement-display" ... >
+    <div id="gap-ratio" style="color: red; font-weight: bold;"></div>
+</div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
